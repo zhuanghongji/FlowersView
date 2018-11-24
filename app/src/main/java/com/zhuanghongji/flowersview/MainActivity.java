@@ -10,6 +10,12 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.zhuanghongji.flowersview.libs.FlowersView;
+import com.zhuanghongji.flowersview.libs.OnCompleteListener;
+
+/**
+ * 主页面：测试 FlowersView
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
@@ -72,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
                 sbRadiusB.setMax(radiusBMax);
                 sbRadiusC.setMax(radiusBMax);
 
-//                int radiusCMax = mFlowersView.getSideLength() / 2;
-//                sbRadiusB.setMax(radiusCMax);
+                // int radiusCMax = mFlowersView.getSideLength() / 2;
+                // sbRadiusB.setMax(radiusCMax);
 
                 int bigRadianMax = 10000;
                 sbRadian.setMax(bigRadianMax);
@@ -149,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mFlowersView.setOnCompleteListener(new FlowersView.OnCompleteListener() {
+        mFlowersView.setOnCompleteListener(new OnCompleteListener() {
             @Override
             public void onComplete() {
                 Log.i(TAG, "onComplete");
@@ -172,5 +178,4 @@ public class MainActivity extends AppCompatActivity {
 
         tvRadianChange = findViewById(R.id.tv_radian_change);
     }
-
 }

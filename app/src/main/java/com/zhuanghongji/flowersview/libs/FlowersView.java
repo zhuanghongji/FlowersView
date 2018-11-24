@@ -1,4 +1,4 @@
-package com.zhuanghongji.flowersview;
+package com.zhuanghongji.flowersview.libs;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,6 +12,8 @@ import android.view.View;
 
 /**
  * 自定义 View : 繁华曲线
+ *
+ * @author zhuanghongji
  */
 public class FlowersView extends View {
 
@@ -19,12 +21,15 @@ public class FlowersView extends View {
 
     private static final float COMPLETE_DEVIATION = 10F;
 
+    /** 画笔：辅助线 */
     private Paint mAssistPaint;
-
+    /** 画笔：繁花曲线 */
     private Paint mTargetPaint;
 
+    /** 繁花曲线的绘制路径 */
     private Path mTargetPath;
 
+    /** 绘制区域的边长 */
     private int mSideLength;
 
     private float mRadian;
@@ -167,7 +172,7 @@ public class FlowersView extends View {
      * @param center 圆心
      * @param radius 半径
      * @param radian 弧度
-     * @return
+     * @return 圆上点的坐标
      */
     private Point getPointInCircle(Point center, double radius, double radian) {
         float x = (float) (center.x + radius * Math.cos(radian));
@@ -204,7 +209,7 @@ public class FlowersView extends View {
         setupPointB();
         setupPointC();
 
-        if(Math.abs(mPointFirstDraw.x - mPointC.x) < COMPLETE_DEVIATION
+        if (Math.abs(mPointFirstDraw.x - mPointC.x) < COMPLETE_DEVIATION
                 && Math.abs(mPointFirstDraw.y - mPointC.y) < COMPLETE_DEVIATION
                 && radian > 10) {
             if (mOnCompleteListener != null) {
@@ -215,31 +220,6 @@ public class FlowersView extends View {
 
     public void setOnCompleteListener(OnCompleteListener onCompleteListener) {
         mOnCompleteListener = onCompleteListener;
-    }
-
-    class Point {
-
-        float x;
-        float y;
-
-        Point() {}
-
-        Point(float x, float y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        int getX() {
-            return (int) x;
-        }
-
-        int getY() {
-            return (int) y;
-        }
-    }
-
-    public interface OnCompleteListener {
-        void onComplete();
     }
 
 }
